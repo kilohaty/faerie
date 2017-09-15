@@ -1,17 +1,17 @@
 <template>
-  <transition name="fade">
+  <transition name="fr-fade">
     <div class="fr-toast" v-show="visible">{{message}}</div>
   </transition>
 </template>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
 
-  .fade-enter-active,
-  .fade-leave-active
+  .fr-fade-enter-active,
+  .fr-fade-leave-active
     opacity 1
 
-  .fade-enter,
-  .fade-leave-to
+  .fr-fade-enter,
+  .fr-fade-leave-to
     opacity 0
 
   .fr-toast

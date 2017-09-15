@@ -4,7 +4,7 @@
   </button>
 </template>
 
-<style lang="stylus" rel="stylesheet/stylus" scoped>
+<style lang="stylus" rel="stylesheet/stylus">
   @import "../../src/css/theme.styl"
 
   .fr-button
