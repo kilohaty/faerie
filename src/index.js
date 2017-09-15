@@ -17,7 +17,7 @@ const install = function (Vue) {
   Vue.$toast = Vue.prototype.$toast = Toast;
 };
 
-module.exports = {
+export default {
   install,
   AnchorNav,
   Button,
