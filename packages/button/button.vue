@@ -56,8 +56,6 @@
 </style>
 
 <script type="text/babel">
-  import 'v-feedback';
-
   export default {
     name: 'fr-button',
 
