@@ -1,11 +1,11 @@
 {
   "name": "faerie",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "simple mobile UI components for Vue 2.0",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "dependencies": {
     "alloytouch": "^0.2.5",
-    "v-feedback": "^0.1.5"
+    "v-feedback": "^0.1.6"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -45,6 +45,7 @@
   },
   "scripts": {
     "dev": "node build/dev-server.js",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.conf.js --hide-modules",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
