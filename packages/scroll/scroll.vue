@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus">
   .fr-scroll.horizontal
     overflow-x hidden
     .fr-scroll-wrapper

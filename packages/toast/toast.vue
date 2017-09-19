@@ -4,7 +4,7 @@
   </transition>
 </template>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus">
 
   .fr-fade-enter-active,
   .fr-fade-leave-active

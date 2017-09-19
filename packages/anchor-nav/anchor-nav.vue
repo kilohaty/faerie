@@ -10,7 +10,7 @@
   </rf-pin>
 </template>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus">
   .fr-anchor-nav-wrapper
     white-space nowrap
     overflow-x hidden
