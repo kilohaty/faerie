@@ -1,10 +1,10 @@
 <template>
-  <button :class="buttonClass" v-feedback>
+  <button :class="buttonClass" @click="click" v-feedback>
     <slot></slot>
   </button>
 </template>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus">
   @import "../../src/css/theme.styl"
 
   .fr-button
@@ -69,6 +69,12 @@
     computed: {
       buttonClass() {
         return this.theme ? `fr-button theme-${this.theme}` : 'fr-button';
+      }
+    },
+
+    methods: {
+      click() {
+        this.$emit('click');
       }
     }
   }
