@@ -26,8 +26,8 @@
   import AlloyTouch from 'alloytouch';
   import Transform from 'alloytouch/transformjs/transform';
 
-  const ANCHOR_ATTR = 'data-fr-author';
-  const ANCHOR_TARGET_ATTR = 'data-fr-author-target';
+  const ANCHOR_ATTR = 'data-fr-anchor';
+  const ANCHOR_TARGET_ATTR = 'data-fr-anchor-target';
 
   export default {
     name: 'fr-anchor-nav',
