@@ -1,11 +1,11 @@
 {
   "name": "faerie",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "simple mobile UI components for Vue 2.0",
   "main": "dist/index.js",
   "dependencies": {
     "alloytouch": "^0.2.5",
-    "v-feedback": "^0.1.6"
+    "v-feedback": "^0.1.7"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
