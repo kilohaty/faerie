@@ -1,6 +1,6 @@
 {
   "name": "faerie",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "simple mobile UI components for Vue 2.0",
   "main": "dist/index.js",
   "dependencies": {
