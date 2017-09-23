@@ -24,9 +24,16 @@
 <script type="text/babel">
   import AlloyTouch from 'alloytouch';
   import Transform from 'alloytouch/transformjs/transform';
+  import Utils from '../../src/utils';
 
   export default {
     name: 'fr-scroll',
+
+    data() {
+      return {
+        alloyTouch: null,
+      }
+    },
 
     props: {
       /**
@@ -35,6 +42,16 @@
       direction: {
         type: String,
         default: 'horizontal'
+      },
+
+      autoCenter: {
+        type: Boolean,
+        default: false
+      },
+
+      elSelector: {
+        type: String,
+        default: ''
       }
     },
 
@@ -56,13 +73,21 @@
       }
     },
 
+    watch: {
+      elSelector() {
+        if (this.autoCenter && this.elSelector) {
+          this.toCenter();
+        }
+      }
+    },
+
     mounted() {
       const scroll          = this.$refs.frScroll;
       const scrollerWrapper = this.$refs.frScrollWrapper;
 
       Transform(scrollerWrapper);
       this.$nextTick(() => {
-        new AlloyTouch({
+        this.alloyTouch = new AlloyTouch({
           touch: scroll,
           target: scrollerWrapper,
           vertical: this.optionVertical,
@@ -72,6 +97,24 @@
         });
       });
     },
+
+    methods: {
+      toCenter() {
+        const el = document.querySelector(this.elSelector);
+        if (!el) return;
+        const container      = this.$refs.frScrollWrapper;
+        const containerWidth = container.offsetWidth;
+        const eleLeft        = Utils.getElementLeft(el, container);
+        const marginLeft     = getComputedStyle(el, null).getPropertyValue('margin-left');
+        const marginRight    = getComputedStyle(el, null).getPropertyValue('margin-right');
+        const eleWidth       = el.offsetWidth + parseInt(marginLeft) + parseInt(marginRight);
+
+        let x = -(eleLeft - (containerWidth - eleWidth) / 2);
+        x     = x > 0 ? 0 : x < this.optionMin ? this.optionMin : x;
+
+        this.alloyTouch.to(x, 300);
+      },
+    }
 
   }
 </script>
