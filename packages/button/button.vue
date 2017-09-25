@@ -8,7 +8,6 @@
   @import "../../src/css/theme.styl"
 
   .fr-button
-    min-width 85px
     height 35px
     line-height 35px
     font-size 14px
