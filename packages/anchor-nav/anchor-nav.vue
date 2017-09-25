@@ -60,7 +60,7 @@
     },
 
     watch: {
-      value(val) {
+      value: function(val) {
         if (val !== this.currentAnchor) {
           this.goToAnchorTarget(val);
         }
@@ -69,7 +69,7 @@
       /**
        * recalculate
        */
-      dataModel() {
+      dataModel: function() {
         this.updateAnchor();
       }
     },

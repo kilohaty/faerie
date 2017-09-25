@@ -74,7 +74,7 @@
     },
 
     watch: {
-      elSelector() {
+      elSelector: function() {
         if (this.autoCenter && this.elSelector) {
           this.toCenter();
         }
