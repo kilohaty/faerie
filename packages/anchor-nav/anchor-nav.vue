@@ -26,7 +26,7 @@
   import AlloyTouch from 'alloytouch';
   import Transform from 'alloytouch/transformjs/transform';
 
-  const ANCHOR_ATTR = 'data-fr-anchor';
+  const ANCHOR_ATTR        = 'data-fr-anchor';
   const ANCHOR_TARGET_ATTR = 'data-fr-anchor-target';
 
   export default {
@@ -60,7 +60,7 @@
     },
 
     watch: {
-      value: function(val) {
+      value: function (val) {
         if (val !== this.currentAnchor) {
           this.goToAnchorTarget(val);
         }
@@ -69,7 +69,7 @@
       /**
        * recalculate
        */
-      dataModel: function() {
+      dataModel: function () {
         this.updateAnchor();
       }
     },
@@ -138,8 +138,8 @@
 
           const targetTop = Utils.getElementTop(target);
 
-          el.removeEventListener('click', this.anchorClickHandler);
-          el.addEventListener('click', this.anchorClickHandler);
+          el.removeEventListener('click', this.anchorClickHandler.bind(this, el));
+          el.addEventListener('click', this.anchorClickHandler.bind(this, el));
 
           return {name: name, targetTop: targetTop};
         });
@@ -175,8 +175,7 @@
         this.setScrollTop(targetTop - this.triggerDistance);
       },
 
-      anchorClickHandler(e) {
-        const el        = e.target;
+      anchorClickHandler(el) {
         const target    = this.getAnchorTarget(el);
         const targetTop = Utils.getElementTop(target);
 
