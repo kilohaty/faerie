@@ -47,7 +47,7 @@ module.exports = Merge(BaseConfig, {
     new webpack.LoaderOptionsPlugin({minimize: true, debug: false}),
     new webpack.DefinePlugin({'process.env': {NODE_ENV: '"production"'}}),
     new CssAssetsPlugin({
-      cssProcessorOptions: {autoprefixer: false, discardComments: {removeAll: true}},
+      cssProcessorOptions: {autoprefixer: false, discardComments: {removeAll: true}, safe: true},
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {warnings: false},
