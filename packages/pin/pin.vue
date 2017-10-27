@@ -30,6 +30,19 @@
       value: {
         type: Boolean,
         default: false
+      },
+      dataModel: {
+        type: Number,
+        default: 0
+      }
+    },
+
+    watch: {
+      /**
+       * recalculate
+       */
+      dataModel: function () {
+        this.initElement();
       }
     },
 

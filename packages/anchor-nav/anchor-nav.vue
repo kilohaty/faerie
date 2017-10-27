@@ -1,5 +1,5 @@
 <template>
-  <rf-pin>
+  <rf-pin :data-model="dataModel">
     <div class="fr-anchor-nav" ref="frAnchorNav">
       <div class="fr-anchor-nav-wrapper">
         <div class="fr-anchor-nav-scroll" ref="frAnchorNavScroll">
