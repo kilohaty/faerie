@@ -54,6 +54,10 @@
     methods: {
       initElement() {
         const ele     = this.$refs.frPin;
+        if (ele.style.position === 'fixed') {
+          return;
+        }
+
         this.eleTop   = Utils.getElementTop(ele);
         this.eleLeft  = Utils.getElementLeft(ele);
         this.eleWidth = ele.offsetWidth;
