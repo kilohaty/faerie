@@ -10,6 +10,7 @@
   .fr-scroll.horizontal
     overflow-x hidden
     .fr-scroll-wrapper
+      position relative
       width 100%
       white-space nowrap
 
@@ -17,6 +18,7 @@
     overflow-y hidden
     height 100%
     .fr-scroll-wrapper
+      position relative
       height 100%
 
 </style>
