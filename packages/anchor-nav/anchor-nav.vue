@@ -1,5 +1,6 @@
 <template>
-  <rf-pin :data-model="dataModel">
+  <rf-pin :data-model="pinDataModel"
+          :pin-placeholder="navPlaceholder">
     <div class="fr-anchor-nav" ref="frAnchorNav">
       <div class="fr-anchor-nav-wrapper">
         <div class="fr-anchor-nav-scroll" ref="frAnchorNavScroll">
@@ -39,6 +40,8 @@
         translateX: 0,
         anchorList: [],
         currentAnchor: '',
+        bodyScrollHeight: 0,
+        pinDataModel: 0,
       }
     },
 
@@ -56,7 +59,19 @@
       dataModel: {
         type: Number,
         default: 0
-      }
+      },
+
+      navPlaceholder: {
+        type: Boolean,
+        default: false
+      },
+
+      // auto update` anchor
+      autoCalc: {
+        type: Boolean,
+        default: false
+      },
+
     },
 
     watch: {
@@ -69,9 +84,10 @@
       /**
        * recalculate
        */
-      dataModel: function () {
+      dataModel: function (val) {
+        this.pinDataModel = val;
         this.updateAnchor();
-      }
+      },
     },
 
     mounted() {
@@ -148,6 +164,15 @@
       },
 
       windowScrollHandler(scrollTop) {
+        if (this.autoCalc) {
+          const scrollHeight = document.body.scrollHeight;
+          if (scrollHeight !== this.bodyScrollHeight) {
+            this.pinDataModel     = scrollHeight;
+            this.bodyScrollHeight = scrollHeight;
+            this.updateAnchor();
+          }
+        }
+
         const list = this.anchorList;
         if (!list.length) return;
 
