@@ -1,5 +1,12 @@
 <template>
-  <div class="fr-pin" ref="frPin">
+  <div v-if="pinPlaceholder"
+       class="fr-pin-placeholder"
+       ref="frPinPlaceholder">
+    <div class="fr-pin" ref="frPin">
+      <slot></slot>
+    </div>
+  </div>
+  <div v-else class="fr-pin" ref="frPin">
     <slot></slot>
   </div>
 </template>
@@ -22,6 +29,7 @@
           top: 0,
           width: 0,
         },
+        bodyScrollHeight: 0,
       }
     },
 
@@ -34,6 +42,21 @@
       dataModel: {
         type: Number,
         default: 0
+      },
+      pinPlaceholder: {
+        type: Boolean,
+        default: false
+      },
+      // auto calculate element position
+      autoCalc: {
+        type: Boolean,
+        default: false
+      },
+    },
+
+    computed: {
+      calcEle() {
+        return this.pinPlaceholder ? this.$refs.frPinPlaceholder : this.$refs.frPin;
       }
     },
 
@@ -42,18 +65,18 @@
        * recalculate
        */
       dataModel: function () {
-        this.initElement();
+        this.calcElePosition();
       }
     },
 
     mounted() {
-      this.initElement();
+      this.calcElePosition();
       Evter.on('windowScroll', this.onScroll);
     },
 
     methods: {
-      initElement() {
-        const ele     = this.$refs.frPin;
+      calcElePosition() {
+        const ele = this.calcEle;
         if (ele.style.position === 'fixed') {
           return;
         }
@@ -75,6 +98,14 @@
        * @param scrollTop
        */
       onScroll(scrollTop) {
+        if (this.autoCalc) {
+          const scrollHeight = document.body.scrollHeight;
+          if (scrollHeight !== this.bodyScrollHeight) {
+            this.bodyScrollHeight = scrollHeight;
+            this.calcElePosition();
+          }
+        }
+
         const ele     = this.$refs.frPin;
         const isFixed = ele.style.position === 'fixed';
 
