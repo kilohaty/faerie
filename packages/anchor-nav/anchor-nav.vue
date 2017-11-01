@@ -66,7 +66,7 @@
         default: false
       },
 
-      // auto update` anchor
+      // auto update anchor
       autoCalc: {
         type: Boolean,
         default: false
