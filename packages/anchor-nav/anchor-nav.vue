@@ -26,9 +26,16 @@
   import RfPin from '../pin/pin.vue';
   import AlloyTouch from 'alloytouch';
   import Transform from 'alloytouch/transformjs/transform';
+  import ScrollTo from 'scroll-to';
 
   const ANCHOR_ATTR        = 'data-fr-anchor';
   const ANCHOR_TARGET_ATTR = 'data-fr-anchor-target';
+  const ATTR_SCROLL_TO_Y   = 'data-scroll-to-y';
+
+  function anchorClickHandler() {
+    const y = +this.getAttribute(ATTR_SCROLL_TO_Y);
+    ScrollTo(0, y, {ease: 'in-out-sine', duration: 500});
+  }
 
   export default {
     name: 'fr-anchor-nav',
@@ -142,7 +149,7 @@
       },
 
       setScrollTop(value) {
-        document.documentElement.scrollTop = document.body.scrollTop = value;
+        ScrollTo(0, value, {ease: 'in-out-sine', duration: 500});
       },
 
       updateAnchor() {
@@ -153,9 +160,10 @@
           if (!target) return {};
 
           const targetTop = Utils.getElementTop(target);
-
-          el.removeEventListener('click', this.anchorClickHandler.bind(this, el));
-          el.addEventListener('click', this.anchorClickHandler.bind(this, el));
+          const scrollToY = targetTop - this.triggerDistance;
+          el.setAttribute(ATTR_SCROLL_TO_Y, scrollToY);
+          el.removeEventListener('click', anchorClickHandler);
+          el.addEventListener('click', anchorClickHandler);
 
           return {name: name, targetTop: targetTop};
         });
@@ -196,21 +204,6 @@
         const anchorTarget = anchor && this.getAnchorTarget(anchor);
         if (!anchorTarget) return;
         const targetTop = Utils.getElementTop(anchorTarget);
-
-        this.setScrollTop(targetTop - this.triggerDistance);
-      },
-
-      anchorClickHandler(el) {
-        const target    = this.getAnchorTarget(el);
-        const targetTop = Utils.getElementTop(target);
-
-        this.setScrollTop(targetTop - this.triggerDistance);
-      },
-
-      triggerAnchor(name) {
-        const el        = this.getAnchor(name);
-        const target    = this.getAnchorTarget(el);
-        const targetTop = Utils.getElementTop(target);
 
         this.setScrollTop(targetTop - this.triggerDistance);
       },
