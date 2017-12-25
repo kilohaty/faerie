@@ -2,7 +2,9 @@
   <rf-pin :data-model="pinDataModel"
           :pin-placeholder="navPlaceholder">
     <div class="fr-anchor-nav" ref="frAnchorNav">
+      <slot name="nav-inner"></slot>
       <div class="fr-anchor-nav-wrapper">
+        <slot name="wrapper-inner"></slot>
         <div class="fr-anchor-nav-scroll" ref="frAnchorNavScroll">
           <slot></slot>
         </div>
