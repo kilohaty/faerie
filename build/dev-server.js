@@ -14,7 +14,7 @@ const port       = devConf.port;
 const proxyTable = devConf.proxyTable; // https://github.com/chimurai/http-proxy-middleware
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
-  index: "express.html",
+  index: 'index.html',
   publicPath: '/',
   noInfo: false,
   quiet: true
@@ -44,7 +44,7 @@ Object.keys(proxyTable).forEach(context => {
   }
   app.use(proxyMiddleware(options.filter || context, options));
 });
-app.get('/', (req, res) => res.redirect('/pages/start/index.html'));
+app.get('/', (req, res) => res.redirect('/index.html'));
 app.use(require('connect-history-api-fallback')());
 app.use(devMiddleware);
 app.use(hotMiddleware);
