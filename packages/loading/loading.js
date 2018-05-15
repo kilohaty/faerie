@@ -32,6 +32,4 @@ const Loading = (function () {
   };
 }());
 
-console.log(Loading);
-
 export default Loading;
